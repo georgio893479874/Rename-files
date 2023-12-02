@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <form enctype="multipart/form-data">
+    <input type="file" id="filepicker" name="fileList" webkitdirectory multiple>
+    <select name="" id="">
+        <% for (let i = 0; i < Object.keys(mode).length; i++) { %>
+          <option value=""> <%= Object.keys(mode)[i] %>  </option>
+        <% } %>
+    </select>
+    <button>Rename</button>
+    <ul id="listing"></ul>
+  </form>
+
+  <script>
+    document.getElementById("filepicker").addEventListener("change", (event) => {
+      let output = document.getElementById("listing");
+      for (const file of event.target.files) {
+        let item = document.createElement("li");
+        item.textContent = file.webkitRelativePath;
+        output.appendChild(item);
+        }
+      },  false,  );
+  </script>
+</body>
+</html>
