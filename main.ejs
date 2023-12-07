@@ -18,13 +18,22 @@
   </form>
 
   <script>
+    let mode = {
+        image: ['png', 'gif', 'svg', 'jpeg', 'jpg', 'bmp', 'webp'],
+        application: ['exe', 'apk', 'dmg'],
+        archive: ['zip', 'rar'],
+    }
+
     document.getElementById("filepicker").addEventListener("change", (event) => {
-      let output = document.getElementById("listing");
-      for (const file of event.target.files) {
-        let item = document.createElement("li");
-        item.textContent = file.webkitRelativePath;
-        output.appendChild(item);
-        }
+    let output = document.getElementById("listing");
+    for (const file of event.target.files) {
+        let extension = file.name.slice(file.name.lastIndexOf('.') +1 )
+              if (mode.image.includes(extension)) {
+                  let item = document.createElement("li");
+                  item.textContent = file.webkitRelativePath;
+                  output.appendChild(item);
+              }
+          }
       },  false,  );
   </script>
 </body>
