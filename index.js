@@ -8,14 +8,6 @@ import multer from 'multer';
 
 const app = express()
 
-let mode = {
-    image: ['png', 'gif', 'svg', 'jpeg', 'jpg', 'bmp', 'webp'],
-    application: ['exe', 'apk'],
-    archive: ['zip', 'rar'],
-    document: ['txt', 'pdf'],
-    audio: ['mp4', 'mp3'],
-}
-
 function autoRename() {
     fs.readdir('./', (err, files) => {
         let filesList = [];
