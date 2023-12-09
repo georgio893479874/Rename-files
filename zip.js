@@ -6,7 +6,7 @@ import path from 'path';
 export function zip() {
   const output = fs.createWriteStream('./example.zip');
   const archive = archiver('zip', {
-    zlib: { level: 1 } // Sets the compression level.
+    zlib: { level: 1 } 
   });
 
   archive.file('./1.txt', { name: './1.txt' });
