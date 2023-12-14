@@ -30,7 +30,7 @@
         let extension = file.name.slice(file.name.lastIndexOf('.') +1 )
               if (mode.image.includes(extension)) {
                   let item = document.createElement("li");
-                  item.textContent = file.webkitRelativePath;
+                  item.textContent = file.name;
                   output.appendChild(item);
               }
           }
