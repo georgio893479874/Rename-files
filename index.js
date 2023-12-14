@@ -8,6 +8,8 @@ import multer from 'multer';
 
 const app = express()
 
+const upload = multer({storage: storage})
+
 function autoRename() {
     fs.readdir('./', (err, files) => {
         let filesList = [];
