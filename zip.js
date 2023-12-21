@@ -32,8 +32,6 @@ export function zip() {
     throw err;
   });
 
-  let data = fs.readFileSync('./r.png')  
-  archive.append(data, { name: 'r.png' });
   archive.pipe(output);
   archive.finalize();
 }
