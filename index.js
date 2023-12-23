@@ -65,15 +65,16 @@ function deleteStore(req, res, next) {
         }
         for (const file of files) {
             fs.unlink('./uploads/'+ file, err => {
-            if (err) {
-                console.error('Помилка при видаленні файла:', err);
-            } 
-            else {
-                console.log(`Файл ${file} був успішно видалений`);
-            }
+                if (err) {
+                    console.error('Помилка при видаленні файла:', err);
+                } 
+                else {
+                    console.log(`Файл ${file} був успішно видалений`);
+                }
+            });
         }
-    });
-} next() }
+    }); next()
+}
 
 app.post('/getfiles', deleteStore, upload.array('fileList'), async (req, res) => {
     console.log(req.files)
