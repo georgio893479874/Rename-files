@@ -3,7 +3,7 @@ import path from 'path';
 import ejs from 'ejs';
 import express from 'express';
 import archiver from 'archiver';
-import { zip } from './zipper.js';
+import { zip } from './zip.js';
 import multer from 'multer';
 import { fileURLToPath, pathToFileURL } from 'url';
 
