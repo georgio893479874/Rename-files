@@ -6,16 +6,12 @@ import archiver from 'archiver';
 import { zip } from './zip.js';
 import multer from 'multer';
 import { fileURLToPath, pathToFileURL } from 'url';
+import { mode } from './main.ejs';
 
 const app = express()
 
 let numberCount = 0;
 let myExtesion = ['.json', '.js', '.html', '.css'];
-let mode = {
-    image: ['png', 'gif', 'svg', 'jpeg', 'jpg', 'bmp', 'webp'],
-    application: ['exe', 'apk', 'dmg'],
-    archive: ['zip', 'rar'],
-};
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
