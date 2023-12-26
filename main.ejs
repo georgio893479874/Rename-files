@@ -19,10 +19,10 @@
 
 <script>
     export let mode = {
-        image: ['png', 'gif', 'svg', 'jpeg', 'jpg', 'bmp', 'webp'],
-        application: ['exe', 'apk', 'dmg'],
-        archive: ['zip', 'rar'],
-    }
+               image: ['png', 'gif', 'svg', 'jpeg', 'jpg', 'bmp', 'webp'],
+               application: ['exe', 'apk', 'dmg'],
+               archive: ['zip', 'rar'],
+           }
     document.getElementById("filepicker").addEventListener("change",  (event) => {
         let output = document.getElementById("listing");
         for (const file of event.target.files) {
