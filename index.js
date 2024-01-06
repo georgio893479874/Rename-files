@@ -7,8 +7,11 @@ import { zip } from './zip.js';
 import multer from 'multer';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { mode } from './main.ejs';
+import bodyParser from 'body-parser';
 
 const app = express()
+
+app.use(bodyParser.json());
 
 let numberCount = 0;
 let myExtesion = ['.json', '.js', '.html', '.css'];
@@ -29,7 +32,7 @@ function autoRename() {
         let filesList = [];
         for (let i = 0; i < files.length; i++) {
             if (fs.statSync(path.join('./', files[i])).isFile()) {
-                filesList.push(files[i])
+                filesList.push(files[i]);
             }
         }
         console.log(filesList)
@@ -56,34 +59,54 @@ function deleteStore(req, res, next) {
     fs.readdir('./uploads', (err, files) => {
         console.log(files)
         if (err) {
-            console.error('Помилка при читанні директорія:', err);
+            console.error('Notice when reading the directory:', err);
             return;
         }
         for (const file of files) {
             fs.unlink('./uploads/'+ file, err => {
                 if (err) {
-                    console.error('Помилка при видаленні файла:', err);
+                    console.error('Error when deleting file:', err);
                 } 
                 else {
-                    console.log(`Файл ${file} був успішно видалений`);
+                    console.log(`File ${file} was successfully deleted`);
                 }
             });
         }
     }); next()
 }
 
-app.post('/getfiles', deleteStore, upload.array('fileList'), async (req, res) => {
-    console.log(req.files)
+app.post('/getfiles', deleteStore, filterFiles, upload.array('fileList'), async (req, res) => {
+    console.log(req.body.mode);
+    fs.readdir('./uploads', (err, files) => {
+        console.log(files)
+        if (err) {
+            console.error('Notice when reading the directory:', err);
+            return;
+        }
+        for (const file of files) {
+            if (file.endsWith('.png')) {
+                fs.unlink('./uploads/'+ file, err => {
+                    if (err) {
+                        console.error('Error when deleting file:', err);
+                    } 
+                    else {
+                        console.log(`File ${file} was successfully deleted`);
+                    }
+                })
+            }
+        }
+    })
     await zip()
     setTimeout(function () {
-        let __dirname = path.dirname(fileURLToPath(import.meta.url))
-        res.sendFile(path.join(__dirname, 'example.zip'))
+        let __dirname = path.dirname(fileURLToPath(import.meta.url));
+        res.sendFile(path.join(__dirname, 'example.zip'));
     }, 10000);
 })
 
 app.listen(3000, (err) => {
-    console.log('app running')
+    console.log('app running');
 })
+
 
 
 
