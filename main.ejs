@@ -26,13 +26,11 @@
     document.getElementById("filepicker").addEventListener("change",  (event) => {
         let output = document.getElementById("listing");
         for (const file of event.target.files) {
-            let extension = file.name.slice(file.name.lastIndexOf('.') +1 )
-            console.log(extension)
-            if (mode.image.includes(extension)) {
-                let item = document.createElement("li");
-                item.textContent = file.name;
-                output.appendChild(item);
-            }
+            let extension = file.name.slice(file.name.lastIndexOf('.') +1 );
+            console.log(extension);
+            let item = document.createElement("li");
+            item.textContent = file.name;
+            output.appendChild(item);
         }
     }, false, );
 </script>
