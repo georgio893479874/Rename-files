@@ -100,7 +100,7 @@ app.post('/getfiles', deleteStore, filterFiles, upload.array('fileList'), async 
     setTimeout(function () {
         let __dirname = path.dirname(fileURLToPath(import.meta.url));
         res.sendFile(path.join(__dirname, 'example.zip'));
-    }, 10000);
+    }, 5000);
 })
 
 app.listen(3000, (err) => {
