@@ -6,7 +6,7 @@ import archiver from 'archiver';
 import { zip } from './zip.js';
 import multer from 'multer';
 import { fileURLToPath, pathToFileURL } from 'url';
-import { mode } from './main.ejs';
+import { mode } from './views/main.ejs';
 import bodyParser from 'body-parser';
 
 const app = express()
